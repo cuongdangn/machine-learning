@@ -37,13 +37,16 @@ def linear_loss_naive(W, X, y, reg):
             dW[j] += (temp_sum-y[i])*X[i][j]
         loss = loss + np.power(temp_sum - y[i], 2)
     loss = loss / (2*N) + reg
-    dW = np.dot(X.transpose(), np.dot(X,W)-y)
-    dW = dW / N
+    
+    
+    #dW1 = np.dot(X.transpose(), np.dot(X,W)-y)
+    #dW1 = dW1 / N
+    #print(dW1-dW/N)
     #############################################################################
     #                          END OF YOUR CODE                                 #
     #############################################################################
     #print(dW)
-    return loss, dW
+    return loss, dW/N
 
 
 def linear_loss_vectorized(W, X, y, reg):
