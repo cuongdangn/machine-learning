@@ -18,8 +18,7 @@ class LinearRegression(object):
         for it in range(num_iters):
             loss, grad = self.loss(X, y, reg)
             loss_history.append(loss)
-           # print("grad.shape ",grad.shape)
-           # print("W.shape ",self.W.shape)
+
           # perform parameter update
           #########################################################################
           # TODO:                                                                 #
@@ -36,13 +35,10 @@ class LinearRegression(object):
     def predict(self, X):
     
         y_pred = np.zeros(X.shape[1])
-       
         ###########################################################################
         # TODO:                                                                   #
         # Implement this method. Store the predicted labels in y_pred.            #
         ###########################################################################
-        print(X.shape)
-        print(self.W.shape)
         y_pred = np.dot(X,self.W)
         ###########################################################################
         #                           END OF YOUR CODE                              #
