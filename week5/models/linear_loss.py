@@ -60,16 +60,23 @@ def linear_loss_vectorized(W, X, y, reg):
     dW = np.zeros_like(W)
     N = y.size
     #############################################################################
-    # TODO: Compute the linear loss and its gradient using no explicit loops.  #
+    # TODO: Compute the linear loss and its gradient using no explicit loops.   #
     # Store the loss in loss and the gradient in dW. If you are not careful     #
     # here, it is easy to run into numeric instability. Don't forget the        #
     # regularization!                                                           #
     #############################################################################
     loss = np.sum((np.dot(X,W)-y)**2)/(2*N) + reg
+    tmp = np.dot(X,W)-y.transpose()
+    print("y.transpose ",y.transpose().shape)
+    print("tmp.shape ", tmp.shape)
     dW = np.dot(X.transpose(), np.dot(X,W)-y)
     dW = dW / N
     #############################################################################
     #                          END OF YOUR CODE                                 #
     #############################################################################
     #print(dW)
+    print("W,.shape ",W.shape)
+    print("y.shape ",y.shape)
+    print("X.transpose() . shape",X.transpose().shape)
+    print("dW.shape ",dW.shape)
     return loss, dW
