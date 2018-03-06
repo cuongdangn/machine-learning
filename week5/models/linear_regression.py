@@ -11,7 +11,7 @@ class LinearRegression(object):
         num_train, dim = X.shape
         if self.W is None:
           # lazily initialize W
-          self.W = 0.001 * np.random.randn(dim, 1)
+          self.W = 0.001 * np.random.randn(dim)
 
         # Run gradient descent to optimize W
         loss_history = []
@@ -24,7 +24,11 @@ class LinearRegression(object):
           # TODO:                                                                 #
           # Update the weights using the gradient and the learning rate.          #
           #########################################################################
-            self.W = self.W-learning_rate*grad
+            tmp = learning_rate*grad;
+          #  tmp = tmp[:,np.newaxis]
+            self.W = self.W-tmp
+           # print("W shape",self.W.shape)
+           # print("shapee",tmp.shape)
           #########################################################################
           #                       END OF YOUR CODE                                #
           #########################################################################
