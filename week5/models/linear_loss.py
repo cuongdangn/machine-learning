@@ -40,13 +40,15 @@ def linear_loss_naive(W, X, y, reg):
     
     
     #dW1 = np.dot(X.transpose(), np.dot(X,W)-y)
-    #dW1 = dW1 / N
+    dW = dW / N
+   
     #print(dW1-dW/N)
     #############################################################################
     #                          END OF YOUR CODE                                 #
     #############################################################################
-    #print(dW)
-    return loss, dW/N
+   # print("dW.shape 1",dW.shape)
+   # print(dW/N)
+    return loss, dW
 
 
 def linear_loss_vectorized(W, X, y, reg):
@@ -59,17 +61,27 @@ def linear_loss_vectorized(W, X, y, reg):
     loss = 0.0
     dW = np.zeros_like(W)
     N = y.size
+ 
     #############################################################################
-    # TODO: Compute the linear loss and its gradient using no explicit loops.  #
+    # TODO: Compute the linear loss and its gradient using no explicit loops.   #
     # Store the loss in loss and the gradient in dW. If you are not careful     #
     # here, it is easy to run into numeric instability. Don't forget the        #
     # regularization!                                                           #
     #############################################################################
     loss = np.sum((np.dot(X,W)-y)**2)/(2*N) + reg
-    dW = np.dot(X.transpose(), np.dot(X,W)-y)
+    tmp = np.dot(X,W) -y
+ #   tmp = tmp[:,np.newaxis]
+  #  print("y.transpose ",y.transpose().shape)
+  #  print("tmp.shape ", tmp.shape)
+  #  print(W)
+    dW = np.dot(X.transpose(), tmp)
     dW = dW / N
     #############################################################################
     #                          END OF YOUR CODE                                 #
     #############################################################################
     #print(dW)
+  #  print("W,.shape ",W.shape)
+  #  print("y.shape ",y.shape)
+  #  print("X.transpose() . shape",X.transpose().shape)
+  #  print("dW.shape ",dW.shape)
     return loss, dW
