@@ -7,7 +7,7 @@ def linear_loss_naive(W, X, y, reg):
     Inputs have dimension D, there are N examples.
 
     Inputs:
-    - W: A numpy array of shape (D, 1) containing weights.
+    - W: A numpy array of shape (D,) containing weights.
     - X: A numpy array of shape (N, D) containing data.
     - y: A numpy array of shape (N,) containing training labels; y[i] = c means
         that X[i] has label c, where c is a real number.
