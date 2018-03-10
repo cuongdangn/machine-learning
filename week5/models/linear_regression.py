@@ -24,7 +24,7 @@ class LinearRegression(object):
           # TODO:                                                                 #
           # Update the weights using the gradient and the learning rate.          #
           #########################################################################
-            tmp = learning_rate*grad;
+            tmp = learning_rate*grad + 2*learning_rate*reg*self.W;
           #  tmp = tmp[:,np.newaxis]
             self.W = self.W-tmp
            # print("W shape",self.W.shape)
