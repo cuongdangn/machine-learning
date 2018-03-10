@@ -11,21 +11,24 @@ class LinearRegression(object):
         num_train, dim = X.shape
         if self.W is None:
           # lazily initialize W
-          self.W = 0.001 * np.random.randn(dim, 1)
+          self.W = 0.001 * np.random.randn(dim)
 
         # Run gradient descent to optimize W
         loss_history = []
         for it in range(num_iters):
             loss, grad = self.loss(X, y, reg)
             loss_history.append(loss)
-           # print("grad.shape ",grad.shape)
-           # print("W.shape ",self.W.shape)
+
           # perform parameter update
           #########################################################################
           # TODO:                                                                 #
           # Update the weights using the gradient and the learning rate.          #
           #########################################################################
-            self.W = self.W-learning_rate*grad
+            tmp = learning_rate*grad;
+          #  tmp = tmp[:,np.newaxis]
+            self.W = self.W-tmp
+           # print("W shape",self.W.shape)
+           # print("shapee",tmp.shape)
           #########################################################################
           #                       END OF YOUR CODE                                #
           #########################################################################
@@ -36,13 +39,10 @@ class LinearRegression(object):
     def predict(self, X):
     
         y_pred = np.zeros(X.shape[1])
-       
         ###########################################################################
         # TODO:                                                                   #
         # Implement this method. Store the predicted labels in y_pred.            #
         ###########################################################################
-        print(X.shape)
-        print(self.W.shape)
         y_pred = np.dot(X,self.W)
         ###########################################################################
         #                           END OF YOUR CODE                              #
