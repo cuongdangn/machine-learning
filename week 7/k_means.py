@@ -18,22 +18,30 @@ class KMeans(object):
     """
     # save the change of centroids position after updating
     change = np.ones(self.num_clusters)
-
+    num_train = X.shape[0]
+    list_point = array[3]
     while (all(num > epsilon for num in change)):
+        list_point.clear()   # clear list point
         #########################################################################
         # TODO:                                                                 #
         # Compute the l2 distance between all test points and all cluster       #
         # centroid then assign them to the nearest centroid.                    #
         #########################################################################
-        pass
+        dists = compute_distances_no_loops(X)
+        for i in range(num_train):
+            t = argmin(dist[i])
+            list_point[t].append(X[i][j])
         #########################################################################
         # TODO:                                                                 #
         # After assigning data to the nearest centroid, recompute the centroids #
         # then calculate the differrent between old centroids and the new one   #
         #########################################################################
         new_centroids = np.zeros(self.centroids.shape)
-        break
-        pass
+        for j in range(self.num_clusters):
+            new_centroids[j] = sum(list_point[j])/list_point[j].size()
+            
+        change = distance(self.centroids, new_centroids)
+        self.centroids = new_centroids
         #########################################################################
         #                         END OF YOUR CODE                              #
         #########################################################################
